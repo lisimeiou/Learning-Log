@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>高级艺术个人网站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{--bg:#06070b;--text:#f8f2e8;--muted:#b9ae9d;--gold:#d8b56d;--cyan:#78e4ff;--violet:#b38cff}
+body{font-family:"Noto Serif SC","Songti SC","Microsoft YaHei",serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}
+.bg{position:fixed;inset:-20%;z-index:-3;background:radial-gradient(circle at 20% 20%,rgba(120,228,255,.25),transparent 30%),radial-gradient(circle at 80% 15%,rgba(179,140,255,.25),transparent 30%),radial-gradient(circle at 50% 80%,rgba(216,181,109,.18),transparent 35%),linear-gradient(135deg,#030408,#10121a,#05060a);animation:move 14s ease-in-out infinite alternate;filter:blur(10px) saturate(140%)}
+.stars{position:fixed;inset:0;z-index:-2;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:70px 70px;opacity:.12;animation:float 25s linear infinite}
+.grain{position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.05;background-image:radial-gradient(#fff .7px,transparent .7px);background-size:4px 4px}
+@keyframes move{from{transform:translate3d(-2%,-2%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(80px)}}
+nav{position:fixed;top:0;left:0;width:100%;padding:22px 7vw;display:flex;justify-content:space-between;align-items:center;background:rgba(6,7,11,.45);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);z-index:50;box-shadow:0 10px 40px rgba(0,0,0,.28)}
+.logo{letter-spacing:.35em;font-size:14px;color:var(--gold)}
+.links{display:flex;gap:28px;color:var(--muted);font-size:13px}
+.links a:hover{color:#fff}
+header{min-height:100vh;display:grid;place-items:center;padding:120px 7vw 70px;position:relative;overflow:hidden}
+.hero{max-width:1200px;width:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+.badge{display:inline-block;padding:10px 16px;border:1px solid rgba(216,181,109,.35);border-radius:999px;color:var(--gold);font-size:12px;letter-spacing:.2em;margin-bottom:24px;background:rgba(216,181,109,.08)}
+h1{font-size:clamp(48px,8vw,110px);line-height:1.03;font-weight:400;letter-spacing:-.06em;margin-bottom:24px;text-shadow:0 8px 40px rgba(120,228,255,.18),0 0 80px rgba(179,140,255,.12)}
+.shine{background:linear-gradient(90deg,#fff,#78e4ff,#b38cff,#d8b56d,#fff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s ease infinite;filter:drop-shadow(0 0 18px rgba(120,228,255,.35)) drop-shadow(0 0 32px rgba(179,140,255,.25))}
+@keyframes shine{0%,100%{background-position:0%}50%{background-position:100%}}
+.hero p{max-width:620px;color:var(--muted);font-size:17px}
+.btns{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap}
+.btn{padding:14px 24px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);transition:.35s;display:inline-block}
+.btn:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(120,228,255,.15)}
+.primary{background:linear-gradient(135deg,var(--gold),var(--violet));color:#07080c;border:none}
+.card{width:min(420px,100%);height:620px;margin-left:auto;border-radius:38px;padding:18px;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.15);box-shadow:0 50px 160px rgba(0,0,0,.55),0 0 90px rgba(120,228,255,.12),0 0 120px rgba(179,140,255,.08);position:relative;overflow:hidden;animation:levitate 6s ease-in-out infinite}
+.card::before{content:"";position:absolute;inset:-2px;border-radius:40px;background:linear-gradient(135deg,rgba(216,181,109,.55),rgba(120,228,255,.22),rgba(179,140,255,.4),transparent 60%);filter:blur(18px);z-index:-1;animation:borderGlow 6s linear infinite}
+@keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes borderGlow{0%{transform:rotate(0deg) scale(1)}100%{transform:rotate(360deg) scale(1.04)}}
+.inner{height:100%;border-radius:28px;display:grid;place-items:center;text-align:center;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);letter-spacing:.2em;color:rgba(255,255,255,.75);padding:0;overflow:hidden}
+.inner img,.portrait{width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:26px;display:block;filter:grayscale(10%) contrast(112%) brightness(.92)}
+section{padding:110px 7vw;min-height:100vh;position:relative;overflow:hidden}
+.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:44px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.08)}
+.head h2{font-size:clamp(34px,4vw,64px);font-weight:400}.head span{color:var(--gold);font-size:12px;letter-spacing:.24em}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.box{padding:32px;border-radius:30px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(14px);transition:.35s;overflow:hidden}
+.box:hover{transform:translateY(-12px) scale(1.02);box-shadow:0 35px 100px rgba(120,228,255,.18),0 0 60px rgba(179,140,255,.12)}
+.box h3{font-size:24px;font-weight:400;margin-bottom:12px}.box p{color:var(--muted)}
+.workimg{height:330px;display:grid;place-items:center;border-radius:24px;margin-bottom:18px;background:linear-gradient(135deg,rgba(216,181,109,.2),rgba(120,228,255,.12),rgba(179,140,255,.18));color:#fff;letter-spacing:.2em;position:relative;overflow:hidden;cursor:pointer}
+.workimg::before{content:"";position:absolute;inset:-20%;background:conic-gradient(from 0deg,rgba(216,181,109,0),rgba(216,181,109,.35),rgba(120,228,255,.25),rgba(179,140,255,.25),rgba(216,181,109,0));animation:spinAura 7s linear infinite;filter:blur(14px);z-index:0}
+@keyframes spinAura{to{transform:rotate(360deg)}}
+.work-photo{width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;transition:1s cubic-bezier(.16,1,.3,1);position:relative;z-index:1}
+.box:hover .work-photo{transform:scale(1.08)}
+.timeline{max-width:920px;margin:auto;border-left:1px solid rgba(216,181,109,.35);padding-left:40px}.item{margin-bottom:28px;padding:24px 28px;border-radius:24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);position:relative}.item:before{content:"";position:absolute;left:-49px;top:32px;width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 8px rgba(216,181,109,.12),0 0 28px rgba(216,181,109,.6)}.item time{font-size:12px;color:var(--gold);letter-spacing:.2em}.item h3{font-size:26px;font-weight:400;margin:10px 0}.item p{color:var(--muted)}
+.quote{min-height:72vh;display:grid;place-items:center;text-align:center}.quote blockquote{max-width:900px;font-size:clamp(30px,4vw,58px);font-weight:300;line-height:1.5;text-shadow:0 0 30px rgba(216,181,109,.16),0 0 60px rgba(120,228,255,.1)}
+footer{padding:38px 7vw;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+.page-transition{opacity:1;transform:translateY(0) scale(1);filter:none;transition:transform 1.2s cubic-bezier(.16,1,.3,1),opacity 1.2s cubic-bezier(.16,1,.3,1);will-change:transform,opacity}
+header::after,section::after{content:"";position:absolute;left:50%;bottom:26px;width:1px;height:46px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);opacity:.45;animation:scrollLine 1.8s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{transform:translateY(-8px);opacity:.18}50%{transform:translateY(8px);opacity:.75}}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(18px);z-index:9999;display:none;align-items:center;justify-content:center;padding:4vw}.lightbox.show{display:flex}.lightbox img{max-width:92vw;max-height:88vh;border-radius:22px;box-shadow:0 40px 160px rgba(0,0,0,.7)}.lightbox-close{position:fixed;right:34px;top:28px;color:#fff;font-size:34px;cursor:pointer}
+@media(max-width:920px){.links{display:none}.hero,.grid{grid-template-columns:1fr}.card{width:100%;max-width:390px;height:540px;margin:30px auto 0}.head{display:block}.head span{display:block;margin-top:10px}footer{flex-direction:column}header,section{min-height:auto}.page-transition{opacity:1;transform:none;filter:none}.workimg{height:420px}}
+</style>
+</head>
+<body>
+<div class='bg'></div><div class='stars'></div><div class='grain'></div>
+<nav><a class='logo' href='#top'>YOUR NAME</a><div class='links'><a href='#about'>关于</a><a href='#works'>作品</a><a href='#timeline'>经历</a><a href='#contact'>联系</a></div></nav>
+
+<header id='top' class='page-transition active'>
+  <div class='hero'>
+    <div>
+      <div class='badge'>PERSONAL ARCHIVE</div>
+      <h1>高级优雅的表达，<br><span class='shine'>让人生成为作品。</span></h1>
+      <p>这是我的个人档案馆，收藏作品、经历、审美、思想与成长轨迹。以艺术气息与视觉冲击力呈现独特人格。</p>
+      <div class='btns'><a href='#works' class='btn primary'>查看作品</a><a href='#timeline' class='btn'>人生阶段</a></div>
+    </div>
+    <div class='card'>
+      <div class='inner'>
+        <!-- 人物照片放这里：images/me.png -->
+        <img src='images/me.png' class='portrait' alt='个人照片'>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id='about' class='page-transition'>
+  <div class='head'><h2>关于我</h2><span>ABOUT ME</span></div>
+  <div class='grid'>
+    <div class='box'><h3>个人气质</h3><p>克制、审美、表达欲与行动力并存，在现实与理想之间持续创造价值。</p></div>
+    <div class='box'><h3>创作方向</h3><p>电商视觉设计、内容策划、品牌表达、影像创作、个人商业项目。</p></div>
+    <div class='box'><h3>精神底色</h3><p>真正高级的东西，从不喧哗，但会在时间里持续发光。</p></div>
+  </div>
+</section>
+
+<section id='works' class='page-transition'>
+  <div class='head'><h2>作品集</h2><span>SELECTED WORKS</span></div>
+  <div class='grid'>
+    <div class='box'>
+      <div class='workimg'><img src='images/work1.jpg' class='work-photo' alt='公益海报设计'></div>
+      <h3>公益海报设计</h3><p>福彩文化 / 公益传播 / 视觉叙事</p>
+    </div>
+    <div class='box'>
+      <div class='workimg'><img src='images/7.png' class='work-photo' alt='餐饮品牌视觉'></div>
+      <h3>餐饮品牌视觉</h3><p>韩式辣带鱼汤 / 商业海报 / 转化设计</p>
+    </div>
+    <div class='box'>
+      <div class='workimg'><img src='images/work2.png' class='work-photo' alt='电商详情页设计'></div>
+      <h3>电商详情页设计</h3><p>TikTok跨境电商 / 主图副图 / 详情页</p>
+    </div>
+    <div class='box'>
+      <div class='workimg'><img src='images/work3.jpg' class='work-photo' alt='产品卖点设计'></div>
+      <h3>产品卖点设计</h3><p>家居用品 / 卖点拆解 / 视觉转化</p>
+    </div>
+    <div class='box'>
+      <div class='workimg'><img src='images/5.png' class='work-photo' alt='尺寸说明设计'></div>
+      <h3>尺寸说明设计</h3><p>清晰信息层级 / 用户决策辅助</p>
+    </div>
+    <div class='box'>
+      <div class='workimg'><img src='images/5ff9857f-6a8f-4497-a7da-d27b86de6be0.jpg' class='work-photo' alt='文化概念海报'></div>
+      <h3>文化概念海报</h3><p>湖湘文化 / 公益叙事 / 东方美学</p>
+    </div>
+  </div>
+</section>
+
+<section id='timeline' class='page-transition'>
+  <div class='head'><h2>人生阶段</h2><span>LIFE TIMELINE</span></div>
+  <div class='timeline'>
+    <div class='item'><time>第一阶段</time><h3>开始观察世界</h3><p>记录最初的成长环境、启蒙与第一次产生目标感的时刻。</p></div>
+    <div class='item'><time>第二阶段</time><h3>进入现实与商业</h3><p>开始接触项目、工作、创业与社会经验的阶段。</p></div>
+    <div class='item'><time>第三阶段</time><h3>形成个人风格</h3><p>建立能力体系、作品系统与未来目标。</p></div>
+  </div>
+</section>
+
+<section class='quote page-transition'><blockquote>“人生最好的作品，不是某一件成果，而是你最终成为了谁。”</blockquote></section>
+
+<section id='contact' class='page-transition'>
+  <div class='head'><h2>联系我</h2><span>CONTACT</span></div>
+  <div style='text-align:center'><p style='color:var(--muted);margin-bottom:24px'>欢迎合作、交流、共创未来项目。</p><a class='btn primary' href='mailto:your@email.com'>your@email.com</a></div>
+</section>
+
+<footer><div>© 2026 YOUR NAME</div><div>Designed with elegance & impact.</div></footer>
+
+<div class='lightbox' id='lightbox'><span class='lightbox-close' id='lightboxClose'>×</span><img id='lightboxImg' src='' alt='作品大图'></div>
+
+<script>
+const pages=[...document.querySelectorAll('.page-transition')];
+const bg=document.querySelector('.bg');
+const stars=document.querySelector('.stars');
+let currentY=window.scrollY;
+let targetY=window.scrollY;
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+function cinematicScroll(){
+  targetY=window.scrollY;
+  currentY+=(targetY-currentY)*0.075;
+  if(bg) bg.style.transform=`translate3d(${currentY*-0.012}px,${currentY*0.018}px,0) scale(1.08)`;
+  if(stars) stars.style.transform=`translate3d(0,${currentY*0.08}px,0)`;
+  const vh=window.innerHeight;
+  pages.forEach((page)=>{
+    const rect=page.getBoundingClientRect();
+    const center=rect.top+rect.height/2;
+    const distance=Math.abs(center-vh/2);
+    const progress=clamp(1-distance/(vh*.9),0,1);
+    const y=(1-progress)*34;
+    const scale=.988+progress*.012;
+    const opacity=.86+progress*.14;
+    page.style.opacity=opacity;
+    page.style.transform=`translate3d(0,${y}px,0) scale(${scale})`;
+  });
+  requestAnimationFrame(cinematicScroll);
+}
+window.addEventListener('load',()=>{pages.forEach(p=>p.classList.add('active'));cinematicScroll();});
+
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightboxImg');
+const lightboxClose=document.getElementById('lightboxClose');
+document.querySelectorAll('.work-photo').forEach(img=>{
+  img.addEventListener('click',()=>{
+    lightboxImg.src=img.src;
+    lightbox.classList.add('show');
+  });
+});
+lightboxClose.addEventListener('click',()=>lightbox.classList.remove('show'));
+lightbox.addEventListener('click',(e)=>{if(e.target===lightbox)lightbox.classList.remove('show')});
+</script>
+</body>
+</html>
